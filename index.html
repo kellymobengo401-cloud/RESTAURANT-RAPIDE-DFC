@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DFC Food App</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background: linear-gradient(135deg,#fff3f3,#ffeaea,#ffffff);
+background-attachment: fixed;
+}
+
+/* HEADER */
+.hero{
+background: linear-gradient(135deg,#d60000,#ff3b3b);
+color:white;
+text-align:center;
+padding:25px;
+position:relative;
+}
+
+.hero img{
+width:95px;
+height:95px;
+background:white;
+border-radius:20px;
+padding:6px;
+}
+
+.hero h1{
+margin:10px 0 5px;
+letter-spacing:3px;
+}
+
+/* PANIER */
+.cartbar{
+position:sticky;
+top:0;
+background:white;
+padding:10px;
+text-align:center;
+font-weight:bold;
+color:#d60000;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* TITRES */
+.section-title{
+text-align:center;
+color:#d60000;
+margin-top:25px;
+}
+
+/* MENU */
+.menu{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:12px;
+padding:10px 15px;
+}
+
+/* CARD */
+.card{
+background:white;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.12);
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.03);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+/* CONTENT */
+.card-content{
+padding:10px;
+}
+
+.price{
+color:#d60000;
+font-weight:bold;
+}
+
+/* QTY */
+.qty{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+margin-top:10px;
+}
+
+button{
+background:#d60000;
+color:white;
+border:none;
+width:32px;
+height:32px;
+border-radius:50%;
+cursor:pointer;
+}
+
+button:active{
+transform:scale(0.9);
+}
+
+/* FORM */
+.form{
+background:white;
+margin:15px;
+padding:15px;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:10px;
+border:1px solid #ddd;
+}
+
+/* TOTAL */
+.total{
+text-align:center;
+font-size:22px;
+margin-top:10px;
+font-weight:bold;
+color:#d60000;
+}
+
+/* WHATSAPP */
+.whatsapp{
+width:100%;
+padding:15px;
+background:#25D366;
+color:white;
+border:none;
+font-size:18px;
+margin-top:10px;
+border-radius:12px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<img src="logo.jpg">
+<h1>DFC FOOD</h1>
+<p>Commandez vos plats préférés en un clic</p>
+</div>
+
+<!-- PANIER -->
+<div class="cartbar">
+🛒 Articles: <span id="items">0</span> | Total: <span id="totalPanier">0</span> FC
+</div>
+
+<!-- MENU -->
+<h2 class="section-title">🍽 Menu</h2>
+
+<div class="menu">
+
+<div class="card">
+<img src="pizza.jpg">
+<div class="card-content">
+<h3>Pizza Margherita</h3>
+<p class="price">12000 FC</p>
+<div class="qty">
+<button onclick="add('pizza1',-1)">-</button>
+<span id="pizza1">0</span>
+<button onclick="add('pizza1',1)">+</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="burger.jpg">
+<div class="card-content">
+<h3>Burger Classique</h3>
+<p class="price">7000 FC</p>
+<div class="qty">
+<button onclick="add('b1',-1)">-</button>
+<span id="b1">0</span>
+<button onclick="add('b1',1)">+</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="shawarma.jpg">
+<div class="card-content">
+<h3>Chawarma Poulet</h3>
+<p class="price">3000 FC</p>
+<div class="qty">
+<button onclick="add('ch1',-1)">-</button>
+<span id="ch1">0</span>
+<button onclick="add('ch1',1)">+</button>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- FORM -->
+<div class="form">
+
+<h3>Livraison</h3>
+
+<input type="text" id="nom" placeholder="Nom">
+<input type="tel" id="tel" placeholder="Téléphone">
+<textarea id="adresse" placeholder="Adresse"></textarea>
+
+<div class="total">
+Total: <span id="totalForm">0</span> FC
+</div>
+
+<button class="whatsapp" onclick="send()">Commander sur WhatsApp</button>
+
+</div>
+
+<script>
+
+let prix = {
+pizza1:12000,
+b1:7000,
+ch1:3000
+};
+
+let qty = {
+pizza1:0,
+b1:0,
+ch1:0
+};
+
+function add(item,val){
+qty[item] += val;
+if(qty[item] < 0) qty[item] = 0;
+
+document.getElementById(item).innerText = qty[item];
+update();
+}
+
+function update(){
+
+let items = 0;
+let total = 0;
+
+for(let i in qty){
+items += qty[i];
+total += qty[i] * prix[i];
+}
+
+document.getElementById("items").innerText = items;
+document.getElementById("totalPanier").innerText = total;
+document.getElementById("totalForm").innerText = total;
+
+}
+
+function send(){
+
+let nom = document.getElementById("nom").value;
+let tel = document.getElementById("tel").value;
+let adresse = document.getElementById("adresse").value;
+
+if(!nom || !tel || !adresse){
+alert("Remplis tous les champs");
+return;
+}
+
+let total = document.getElementById("totalForm").innerText;
+
+let message =
+`Bonjour DFC
+
+Nom: ${nom}
+Téléphone: ${tel}
+
+Adresse:
+${adresse}
+
+Commande:
+Total: ${total} FC`;
+
+let url = "https://wa.me/243890000444?text=" + encodeURIComponent(message);
+
+window.open(url,"_blank");
+
+}
+
+</script>
+
+</body>
+</html>
