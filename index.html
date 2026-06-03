@@ -20,20 +20,13 @@ background: linear-gradient(135deg,#d60000,#ff3b3b);
 color:white;
 text-align:center;
 padding:25px;
-position:relative;
 }
 
 .hero img{
-width:95px;
-height:95px;
+width:90px;
+border-radius:15px;
 background:white;
-border-radius:20px;
-padding:6px;
-}
-
-.hero h1{
-margin:10px 0 5px;
-letter-spacing:3px;
+padding:5px;
 }
 
 /* PANIER */
@@ -45,14 +38,13 @@ padding:10px;
 text-align:center;
 font-weight:bold;
 color:#d60000;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
 /* TITRES */
 .section-title{
 text-align:center;
 color:#d60000;
-margin-top:25px;
+margin-top:20px;
 }
 
 /* MENU */
@@ -60,29 +52,23 @@ margin-top:25px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:12px;
-padding:10px 15px;
+padding:10px;
 }
 
 /* CARD */
 .card{
 background:white;
-border-radius:18px;
+border-radius:15px;
 overflow:hidden;
-box-shadow:0 10px 25px rgba(0,0,0,0.12);
-transition:0.3s;
-}
-
-.card:hover{
-transform:scale(1.03);
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 .card img{
 width:100%;
-height:200px;
+height:180px;
 object-fit:cover;
 }
 
-/* CONTENT */
 .card-content{
 padding:10px;
 }
@@ -92,7 +78,6 @@ color:#d60000;
 font-weight:bold;
 }
 
-/* QTY */
 .qty{
 display:flex;
 justify-content:center;
@@ -105,8 +90,8 @@ button{
 background:#d60000;
 color:white;
 border:none;
-width:32px;
-height:32px;
+width:30px;
+height:30px;
 border-radius:50%;
 cursor:pointer;
 }
@@ -120,11 +105,11 @@ transform:scale(0.9);
 background:white;
 margin:15px;
 padding:15px;
-border-radius:18px;
+border-radius:15px;
 box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
-input, textarea{
+input,textarea{
 width:100%;
 padding:10px;
 margin-top:10px;
@@ -132,26 +117,23 @@ border-radius:10px;
 border:1px solid #ddd;
 }
 
-/* TOTAL */
 .total{
 text-align:center;
-font-size:22px;
+font-size:20px;
 margin-top:10px;
-font-weight:bold;
 color:#d60000;
+font-weight:bold;
 }
 
-/* WHATSAPP */
 .whatsapp{
 width:100%;
 padding:15px;
 background:#25D366;
 color:white;
 border:none;
-font-size:18px;
+border-radius:10px;
+font-size:16px;
 margin-top:10px;
-border-radius:12px;
-cursor:pointer;
 }
 
 </style>
@@ -159,25 +141,22 @@ cursor:pointer;
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
 <img src="logo.jpg">
 <h1>DFC FOOD</h1>
-<p>Commandez vos plats préférés en un clic</p>
+<p>Commande rapide sur WhatsApp</p>
 </div>
 
-<!-- PANIER -->
 <div class="cartbar">
 🛒 Articles: <span id="items">0</span> | Total: <span id="totalPanier">0</span> FC
 </div>
 
-<!-- MENU -->
-<h2 class="section-title">🍽 Menu</h2>
-
+<!-- 🍕 PIZZAS -->
+<h2 class="section-title">🍕 Pizzas</h2>
 <div class="menu">
 
 <div class="card">
-<img src="pizza.jpg">
+<img src="pizza1.jpg">
 <div class="card-content">
 <h3>Pizza Margherita</h3>
 <p class="price">12000 FC</p>
@@ -190,7 +169,84 @@ cursor:pointer;
 </div>
 
 <div class="card">
-<img src="burger.jpg">
+<img src="pizza2.jpg">
+<div class="card-content">
+<h3>Pizza Poulet</h3>
+<p class="price">14000 FC</p>
+<div class="qty">
+<button onclick="add('pizza2',-1)">-</button>
+<span id="pizza2">0</span>
+<button onclick="add('pizza2',1)">+</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="pizza3.jpg">
+<div class="card-content">
+<h3>Pizza Pepperoni</h3>
+<p class="price">15000 FC</p>
+<div class="qty">
+<button onclick="add('pizza3',-1)">-</button>
+<span id="pizza3">0</span>
+<button onclick="add('pizza3',1)">+</button>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- 🌯 CHAWRAMAS -->
+<h2 class="section-title">🌯 Chawarmas</h2>
+<div class="menu">
+
+<div class="card">
+<img src="shawarma1.jpg">
+<div class="card-content">
+<h3>Chawarma Poulet</h3>
+<p class="price">3000 FC</p>
+<div class="qty">
+<button onclick="add('ch1',-1)">-</button>
+<span id="ch1">0</span>
+<button onclick="add('ch1',1)">+</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="shawarma2.jpg">
+<div class="card-content">
+<h3>Chawarma Viande</h3>
+<p class="price">4000 FC</p>
+<div class="qty">
+<button onclick="add('ch2',-1)">-</button>
+<span id="ch2">0</span>
+<button onclick="add('ch2',1)">+</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="shawarma3.jpg">
+<div class="card-content">
+<h3>Chawarma Mixte</h3>
+<p class="price">5000 FC</p>
+<div class="qty">
+<button onclick="add('ch3',-1)">-</button>
+<span id="ch3">0</span>
+<button onclick="add('ch3',1)">+</button>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- 🍔 BURGERS -->
+<h2 class="section-title">🍔 Burgers</h2>
+<div class="menu">
+
+<div class="card">
+<img src="burger1.jpg">
 <div class="card-content">
 <h3>Burger Classique</h3>
 <p class="price">7000 FC</p>
@@ -203,14 +259,78 @@ cursor:pointer;
 </div>
 
 <div class="card">
-<img src="shawarma.jpg">
+<img src="burger2.jpg">
 <div class="card-content">
-<h3>Chawarma Poulet</h3>
-<p class="price">3000 FC</p>
+<h3>Double Burger</h3>
+<p class="price">9000 FC</p>
 <div class="qty">
-<button onclick="add('ch1',-1)">-</button>
-<span id="ch1">0</span>
-<button onclick="add('ch1',1)">+</button>
+<button onclick="add('b2',-1)">-</button>
+<span id="b2">0</span>
+<button onclick="add('b2',1)">+</button>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- 🍗 POULET -->
+<h2 class="section-title">🍗 Poulet</h2>
+<div class="menu">
+
+<div class="card">
+<img src="poulet1.jpg">
+<div class="card-content">
+<h3>Poulet Frit</h3>
+<p class="price">9000 FC</p>
+<div class="qty">
+<button onclick="add('p1',-1)">-</button>
+<span id="p1">0</span>
+<button onclick="add('p1',1)">+</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="poulet2.jpg">
+<div class="card-content">
+<h3>Poulet Grillé</h3>
+<p class="price">10000 FC</p>
+<div class="qty">
+<button onclick="add('p2',-1)">-</button>
+<span id="p2">0</span>
+<button onclick="add('p2',1)">+</button>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- 🥤 BOISSONS -->
+<h2 class="section-title">🥤 Boissons</h2>
+<div class="menu">
+
+<div class="card">
+<img src="coca.jpg">
+<div class="card-content">
+<h3>Coca</h3>
+<p class="price">2000 FC</p>
+<div class="qty">
+<button onclick="add('coca',-1)">-</button>
+<span id="coca">0</span>
+<button onclick="add('coca',1)">+</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="fanta.jpg">
+<div class="card-content">
+<h3>Fanta</h3>
+<p class="price">2000 FC</p>
+<div class="qty">
+<button onclick="add('fanta',-1)">-</button>
+<span id="fanta">0</span>
+<button onclick="add('fanta',1)">+</button>
 </div>
 </div>
 </div>
@@ -237,56 +357,53 @@ Total: <span id="totalForm">0</span> FC
 <script>
 
 let prix = {
-pizza1:12000,
-b1:7000,
-ch1:3000
+pizza1:12000, pizza2:14000, pizza3:15000,
+ch1:3000, ch2:4000, ch3:5000,
+b1:7000, b2:9000,
+p1:9000, p2:10000,
+coca:2000, fanta:2000
 };
 
-let qty = {
-pizza1:0,
-b1:0,
-ch1:0
-};
+let qty = {};
+for(let i in prix){ qty[i]=0; }
 
 function add(item,val){
-qty[item] += val;
-if(qty[item] < 0) qty[item] = 0;
-
-document.getElementById(item).innerText = qty[item];
+qty[item]+=val;
+if(qty[item]<0) qty[item]=0;
+document.getElementById(item).innerText=qty[item];
 update();
 }
 
 function update(){
 
-let items = 0;
-let total = 0;
+let items=0;
+let total=0;
 
 for(let i in qty){
-items += qty[i];
-total += qty[i] * prix[i];
+items+=qty[i];
+total+=qty[i]*prix[i];
 }
 
-document.getElementById("items").innerText = items;
-document.getElementById("totalPanier").innerText = total;
-document.getElementById("totalForm").innerText = total;
+document.getElementById("items").innerText=items;
+document.getElementById("totalPanier").innerText=total;
+document.getElementById("totalForm").innerText=total;
 
 }
 
 function send(){
 
-let nom = document.getElementById("nom").value;
-let tel = document.getElementById("tel").value;
-let adresse = document.getElementById("adresse").value;
+let nom=document.getElementById("nom").value;
+let tel=document.getElementById("tel").value;
+let adresse=document.getElementById("adresse").value;
 
-if(!nom || !tel || !adresse){
+if(!nom||!tel||!adresse){
 alert("Remplis tous les champs");
 return;
 }
 
-let total = document.getElementById("totalForm").innerText;
+let total=document.getElementById("totalForm").innerText;
 
-let message =
-`Bonjour DFC
+let message=`Bonjour DFC
 
 Nom: ${nom}
 Téléphone: ${tel}
@@ -297,10 +414,9 @@ ${adresse}
 Commande:
 Total: ${total} FC`;
 
-let url = "https://wa.me/243890000444?text=" + encodeURIComponent(message);
+let url="https://wa.me/243890000444?text="+encodeURIComponent(message);
 
 window.open(url,"_blank");
-
 }
 
 </script>
